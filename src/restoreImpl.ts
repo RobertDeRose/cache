@@ -36,13 +36,15 @@ async function restoreImpl(
         );
         const failOnCacheMiss = utils.getInputAsBool(Inputs.FailOnCacheMiss);
         const lookupOnly = utils.getInputAsBool(Inputs.LookupOnly);
+        const useSudo = utils.getInputAsBool(Inputs.UseSudo);
 
         const cacheKey = await cache.restoreCache(
             cachePaths,
             primaryKey,
             restoreKeys,
             { lookupOnly: lookupOnly },
-            enableCrossOsArchive
+            enableCrossOsArchive,
+            useSudo
         );
 
         if (!cacheKey) {

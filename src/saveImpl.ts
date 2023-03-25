@@ -56,11 +56,14 @@ async function saveImpl(stateProvider: IStateProvider): Promise<number | void> {
             Inputs.EnableCrossOsArchive
         );
 
+        const useSudo = utils.getInputAsBool(Inputs.UseSudo);
+
         cacheId = await cache.saveCache(
             cachePaths,
             primaryKey,
             { uploadChunkSize: utils.getInputAsInt(Inputs.UploadChunkSize) },
-            enableCrossOsArchive
+            enableCrossOsArchive,
+            useSudo
         );
 
         if (cacheId != -1) {
